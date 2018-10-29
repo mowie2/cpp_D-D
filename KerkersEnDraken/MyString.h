@@ -1,6 +1,5 @@
 #pragma once
 #include "pch.h"
-#include "EnemyFactory.h"
 #include <iostream>
 
 class MyString
