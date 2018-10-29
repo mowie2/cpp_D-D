@@ -1,0 +1,3 @@
+﻿  EnemyFactory.cpp
+c:\users\louis lim\desktop\alg\cpp\kerkersendraken\kerkersendraken\enemyfactory.cpp(78): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+  KerkersEnDraken.vcxproj -> C:\Users\Louis Lim\Desktop\Alg\CPP\KerkersEnDraken\Debug\KerkersEnDraken.exe
