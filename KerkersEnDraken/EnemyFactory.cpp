@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "EnemyFactory.h"
 #include <iostream>
+#include <fstream>
 
 EnemyFactory::EnemyFactory()
 {
@@ -11,67 +12,47 @@ EnemyFactory::~EnemyFactory()
 {
 }
 
-
-void EnemyFactory::searchParameters(char* &par)
-{
-
-	//par++;
-	//searchName(par);
-	char* buffer;
+void EnemyFactory::SearchParameters(char* &par)
+{	
+	par++;
+	name = SearchStringParameter(par, ";");
 
 	par++;
-	name = searchParameter(par, ";");
+	level = SearchStringParameter(par, ";").Parse();
 
 	par++;
-	buffer = searchParameter(par, ";");
-	level = atoi(buffer);
-	delete[] buffer;
+	chanceAttack = SearchStringParameter(par, "x").Parse();
 
 	par++;
-	buffer = searchParameter(par, "x");
-	chanceAttack = atoi(buffer);
-	delete[] buffer;
+	timesAttack = SearchStringParameter(par, ";").Parse();
 
 	par++;
-	buffer = searchParameter(par, ";");
-	timesAttack = atoi(buffer);
-	delete[] buffer;
+	minDamage = SearchStringParameter(par, "-").Parse();
 
 	par++;
-	buffer = searchParameter(par, "-");
-	minDamage = atoi(buffer);
-	delete[] buffer;
+	maxDamage = SearchStringParameter(par, ";").Parse();
 
 	par++;
-	buffer = searchParameter(par, ";");
-	maxDamage = atoi(buffer);
-	delete[] buffer;
+	defense = SearchStringParameter(par, ";").Parse();
 
 	par++;
-	buffer = searchParameter(par, ";");
-	defense = atoi(buffer);
-	delete[] buffer;
-
-	par++;
-	buffer = searchParameter(par, "]");
-	health = atoi(buffer);
-	delete[] buffer;
+	health = SearchStringParameter(par, "]").Parse();
+	Enemy newEnemy(name, level, chanceAttack, timesAttack, minDamage, maxDamage, defense, health);
+	enemyList.AddItem(newEnemy);
 }
 
-char* EnemyFactory::searchParameter(char* &par,const char * split)
+MyString EnemyFactory::SearchStringParameter(char* &par,const char * split)
 {
 	int count = strstr(par, split) - par;
-	char *buffer = new char[count+1];
-	memcpy(buffer, par, count);
-	buffer[count] = '\0';
+	MyString parameter(par, count);
 	par += count;
-	return buffer;
+	return parameter;
 }
 
 
-void EnemyFactory::read()
+void EnemyFactory::Read(const char *filepath)
 {
-	std::ifstream is(".\\Files\\monsters.txt", std::ifstream::binary);
+	std::ifstream is(filepath, std::ifstream::binary);
 	if (is) {
 		// get length of file:
 		is.seekg(0, is.end);
@@ -94,15 +75,15 @@ void EnemyFactory::read()
 			bufferCopy++;
 		}
 
-		//while (*bufferCopy != '\0') {
+		while (*bufferCopy != '\0') {
 			if (*bufferCopy == '[') {
-				searchParameters(bufferCopy);
+				SearchParameters(bufferCopy);
 			}
 			bufferCopy++;
-		//}
+		}
 		
 		is.close();
-		delete[] buffer,name;
+		delete[] buffer,bufferCopy;
 		_CrtDumpMemoryLeaks();
 	}
 }

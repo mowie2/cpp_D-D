@@ -1,5 +1,6 @@
 #pragma once
-#include "fstream"
+
+#include "MyList.h"
 #include "Enemy.h"
 
 class EnemyFactory
@@ -7,11 +8,12 @@ class EnemyFactory
 public:
 	EnemyFactory();
 	~EnemyFactory();
-	void searchParameters(char* &par);
-	char * searchParameter(char* &par,const char* split);
-	void read();
+	void SearchParameters(char* &par);
+	MyString SearchStringParameter(char* &par,const char* split);
+	void Read(const char *filepath);
 private:
-	char *name;
+	MyList<Enemy> enemyList;
+	MyString name;
 	int level;
 	int chanceAttack;
 	int timesAttack;

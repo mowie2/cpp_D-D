@@ -1,8 +1,10 @@
-﻿  Enemy.cpp
+﻿  pch.cpp
+  Enemy.cpp
   EnemyFactory.cpp
-c:\users\louis lim\desktop\alg\cpp_d-d\kerkersendraken\enemyfactory.cpp(63): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
-c:\users\louis lim\desktop\alg\cpp_d-d\kerkersendraken\enemyfactory.cpp(78): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+c:\users\louis lim\desktop\alg\cpp_d-d\kerkersendraken\enemyfactory.cpp(46): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+c:\users\louis lim\desktop\alg\cpp_d-d\kerkersendraken\enemyfactory.cpp(59): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
   KerkersEnDraken.cpp
   MyString.cpp
+c:\users\louis lim\desktop\alg\cpp_d-d\kerkersendraken\mystring.cpp(8): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
   Generating Code...
   KerkersEnDraken.vcxproj -> C:\Users\Louis Lim\Desktop\Alg\cpp_D-D\x64\Debug\KerkersEnDraken.exe
